@@ -3,6 +3,7 @@ Write a Java program to generate and handle any three built-in
 exceptions and display appropriate error messages.
 */
 
+
 public class Assignment1_1 {
     public static void main(String[] args) {
         int num1 = 4, num2 = 0;
