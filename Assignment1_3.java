@@ -1,3 +1,13 @@
+/*
+ * Write a Java program to perform the following operations:
+
+ a) Read a line of text
+ b) Search for a sub-string SDMCET (case insensitive search)
+ c) If found, then print success message
+ d) Otherwise throw an exception SubStringNotFoundException with appropriate message
+
+ */
+
 import java.util.Scanner;
 
 public class Assignment1_3 {

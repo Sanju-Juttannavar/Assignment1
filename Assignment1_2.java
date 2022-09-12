@@ -1,3 +1,10 @@
+/*
+ * Write a Java program to read an integer and check whether the number is prime or not.
+ *  If negative number is entered, throw an exception NegativeNumberNotAllowedException 
+ * and if entered number is not prime, then throw NumberNotPrimeException.
+ */
+
+
 import java.util.Scanner;
 
 public class Assignment1_2 {
