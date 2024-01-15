@@ -1,7 +1,7 @@
-#Starter java web project
+Starter java web project
 
-##Introduction
+Introduction
 
-##Purpose
+Purpose
 
-##How to contribute
+How to contribute
