@@ -1,1 +1,54 @@
-asdfasdkasldkfjiewelkrjdi
+
+# Color definitions
+_bold_green='\[\033[1;32m\]'
+_bold_brown='\[\033[1;31m\]'
+_bold_teal='\[\033[1;36m\]'
+_bold_navy='\[\033[1;34m\]'
+_olive='\[\033[0;33m\]'
+_reset_color='\[\033[0m\]'
+
+_bold_arrow='\[\033[1m\]➜\[\033[0m\]'  # Bold arrow
+_bold_x='\[\033[1m\]✗\[\033[0m\]'      # Bold x
+
+# Function to get SCM (Git) status
+function scm_prompt_info() {
+    local branch
+    local status
+
+    # Check for Git repository
+    if [ -d ".git" ]; then
+        branch=$(git symbolic-ref --short HEAD 2>/dev/null)
+        if [ -n "$branch" ]; then
+            status=$(git status --porcelain 2>/dev/null)
+            if [ -n "$status" ]; then
+                # Include color for closing parenthesis and ✗ symbol
+                echo -e "${_bold_navy}git:(${_bold_brown}${branch}${_bold_navy}) ${_olive}${_bold_x}${_reset_color}"
+            else
+                echo -e "${_bold_navy}git:(${_bold_brown}${branch}${_reset_color})"
+            fi
+        fi
+    fi
+}
+
+# Function to set the custom prompt
+function _custom_prompt_command() {
+    if [[ "$?" == 0 ]]; then
+        local arrow_color="${_bold_green}"
+    else
+        local arrow_color="${_bold_brown}"
+    fi
+
+    local base_directory="${_bold_teal}\W${_reset_color}"
+    local arrow="${arrow_color}${_bold_arrow}${_reset_color}"
+
+    # Build the prompt string
+    PS1="${arrow}  ${base_directory} "
+
+    # Append SCM info to the prompt
+    local scm_info=$(scm_prompt_info)
+    PS1+=${scm_info:+$scm_info }
+    PS1+="${_reset_color}"
+}
+
+# Register the custom prompt command
+PROMPT_COMMAND=_custom_prompt_command
